@@ -20,4 +20,18 @@ describe("Gilded Rose", function() {
     expect(items[1].quality).toBe(50);
     expect(items[2].quality).toBe(50);
   });
+  it("Should decrease quality by one but not below zero", function() {
+    const gildedRose = new Shop([new Item('Test Item', 2, 0),new Item('Test Item', 2, 1),new Item('Test Item', 2, 20)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(0);
+    expect(items[1].quality).toBe(0);
+    expect(items[2].quality).toBe(19);
+  });
+  it("Should decrease quality by two but not below zero if past sell by date", function() {
+    const gildedRose = new Shop([new Item('Test Item', 0, 0),new Item('Test Item', 0, 1),new Item('Test Item', 0, 20)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toBe(0);
+    expect(items[1].quality).toBe(0);
+    expect(items[2].quality).toBe(18);
+  });
 });
