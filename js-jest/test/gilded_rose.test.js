@@ -35,9 +35,10 @@ describe('Gilded Rose', function() {
     expect(items[2].quality).toBe(18);
   });
   it('Should not update Sulfuras, Hand of Ragnaros', function() {
-    const gildedRose = new Shop([new Item('Sulfuras, Hand of Ragnaros', 0, 0),new Item('Sulfuras, Hand of Ragnaros', 0, 1),new Item('Sulfuras, Hand of Ragnaros', 0, 20)]);
+    const gildedRose = new Shop([new Item('Sulfuras, Hand of Ragnaros', 12, 0),new Item('Sulfuras, Hand of Ragnaros', 0, 1),new Item('Sulfuras, Hand of Ragnaros', 0, 20)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toBe(0);
+    expect(items[0].sellIn).toBe(12);
     expect(items[1].quality).toBe(1);
     expect(items[2].quality).toBe(20);
   });
