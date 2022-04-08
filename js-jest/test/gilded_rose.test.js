@@ -61,10 +61,10 @@ describe('Backstage Tests', function() {
     expect(items[0].quality).toBe(3);
   });
   it('Should be zero if there are no days left', function() {
-    const gildedRose = new Shop([new Item('Backstage passes to a TAFKAL80ETC concert', 1, 5),new Item('Backstage passes to a TAFKAL80ETC concert', -1, 0)]);
+    const gildedRose = new Shop([new Item('Backstage passes to a TAFKAL80ETC concert', 1, 5),new Item('Backstage passes to a TAFKAL80ETC concert', -1, 5)]);
     const items = gildedRose.updateQuality();
-    expect(items[1].quality).toBe(5);
+    expect(items[0].quality).toBe(8);
     expect(items[1].quality).toBe(0);
-    expect(items[1].sellIn).toBe(-1);
+    expect(items[1].sellIn).toBe(-2);
   });
 });
