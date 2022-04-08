@@ -31,14 +31,10 @@ class Shop {
     }
 
     if (sellIn < 0) {
-      if (name !== 'Aged Brie' && name !== 'Backstage passes to a TAFKAL80ETC concert') {
-        if (quality > 0) {
-          quality -= 1;
-        }
-      } else {
-        if (quality < 50) {
-          quality += 1;
-        }
+      if ((name === 'Aged Brie' || name === 'Backstage passes to a TAFKAL80ETC concert') && quality < 50) {
+        quality += 1;
+      } else if (quality > 0) {
+        quality -= 1;
       }
     }
     return quality;
