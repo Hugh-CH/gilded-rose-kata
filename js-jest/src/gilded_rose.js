@@ -27,6 +27,7 @@ class Item {
     default:
       this.updateStandardItemQuality();
     }
+    this.ensureQualityInLimits();
   }
 
   updateBrieQuality(){
@@ -38,9 +39,6 @@ class Item {
 
   updateStandardItemQuality(){
     this.quality = (this.sellIn >= 0) ? this.quality-1 : this.quality-2;
-    if (this.quality < 0){
-      this.quality = 0;
-    }
   }
 
   updateBackStagePassQuality(){
@@ -52,9 +50,14 @@ class Item {
       this.quality+=3;
     } else
       this.quality = 0;
+  }
 
-    if (this.quality > 50){
+  ensureQualityInLimits() {
+    if (this.quality > 50) {
       this.quality = 50;
+    }
+    else if (this.quality<0) {
+      this.quality = 0;
     }
   }
 }
@@ -65,13 +68,10 @@ class Shop {
   }
 
   updateItems() {
-
     for (let i = 0; i < this.items.length; i++) {
-
       this.items[i].updateSellIn();
       this.items[i].updateQuality();
     }
-
     return this.items;
   }
 }
